@@ -18,6 +18,14 @@ const validationSchema = yup.object().shape({
 
 const signUpController = async (req, res) => {
 
+ const generateOtp = () => {
+    const otp = crypto.randomInt(1000, 9999);
+    return otp; 
+ }
+
+ const otp= generateOtp();
+
+ 
  
   try {
     await validationSchema.validate(req.body);
@@ -39,6 +47,7 @@ const signUpController = async (req, res) => {
       last_name,
       password: hashPassword,
       confirm_password: hashConfirmPassword,
+      otp: otp
     });
 
     await addUser.save();
@@ -50,36 +59,22 @@ const signUpController = async (req, res) => {
 
       await plunk.emails.send({
         to: email,
-        subject: 'Welcome to Bookhive',
+        subject: 'Welcome to Bookhive ',
         body: `
         
-        <img src='https://res.cloudinary.com/dhdqt4xwu/image/upload/v1684939754/bookhive/logo_xiwu2l.svg' alt='Bookhive logo'/>
+        📚📚
         <h2>Welcome to Bookhive!</h2>
         <p>Hi, ${first_name} ${last_name}</p>
         <p>Thank you for joining Bookhive, the open platform where you can unleash your love for books. We are thrilled to have you as part of our vibrant literary community.</p>
-        <p>Bookhive offers a wide range of features and opportunities to connect, explore, and engage with fellow book lovers:</p>
-        <ul>
-          <li>Discover new books and authors through our extensive collection.</li>
-          <li>Connect with other book enthusiasts and join engaging discussions.</li>
-          <li>Share your thoughts, reviews, and recommendations with the community.</li>
-          <li>Participate in book clubs and reading challenges.</li>
-          <li>Stay up to date with the latest literary news and events.</li>
-        </ul>
-        <p>We hope you have a delightful experience on Bookhive. If you have any questions, suggestions, or need assistance, please don't hesitate to reach out to our support team.</p>
-        <p>Once again, welcome to Bookhive! Enjoy your journey through the world of books.</p>
-        <p>Best regards,</p>
-        <p>The Bookhive Team</p>
+        verify your OTP 👇👇👇
+        <h1>${otp}</h1>
       `
       })
 
     return res.status(201).json({
       message: "Your account has been created successfully",
-      data: {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: isExisted?.email
-      }, 
-      jwtToken: authToken
+      data: req.body, 
+      
     });
   } catch (err) {
     return res.status(400).send(err.message);

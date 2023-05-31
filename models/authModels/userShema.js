@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { boolean } = require('yup');
 
 const schemaForUser = new mongoose.Schema(
     {
@@ -30,12 +29,19 @@ const schemaForUser = new mongoose.Schema(
             type: String, 
             required: true
         },
-      isVerified: Boolean,
+      isVerified: {
+        type: Boolean,
+        default: false
+      },
+      otp:{
+        type: String,
+        
+      }
        
     }
 )
 
 
 
-const UserSchema = mongoose.model('SignUpSchema', schemaForUser); 
+const UserSchema = mongoose.model('Users', schemaForUser); 
 module.exports = UserSchema;
