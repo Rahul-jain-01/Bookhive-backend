@@ -2,7 +2,7 @@
   "name": "bookhive",
   "version": "1.0.0",
   "description": "backend for bookhive",
-  "main": "server.js",
+  "main": "ts-node server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server",
@@ -23,10 +23,14 @@
     "mongoose": "^7.2.1",
     "nodemailer": "^6.9.3",
     "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
     "validator": "^13.9.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {
-    "prettier": "^2.8.8"
+    "@types/node": "^20.3.3",
+    "prettier": "^2.8.8",
+    "tslib": "^2.6.0",
+    "typescript": "^5.1.6"
   }
 }

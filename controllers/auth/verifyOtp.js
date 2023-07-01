@@ -15,25 +15,29 @@ const verifyOtp = async  ( req , res ) => {
       return   res.status(400).send('Email is not available')
     }
 
+  
+
     if(otp === isExisting.otp) {
        
         isExisting.isVerified = true; 
         isExisting.otp = undefined; 
         await isExisting.save();
-        await plunk.emails.send({
-            to: email,
-            subject: 'Welcome to Bookhive ',
-            body: `
-            
-            📚📚
-            <h1>Congratulations your email has been verified</h1>
-          `
-          })
-        return res.status(200).send({message:"Account has been verifed"});
 
-       
+        // await plunk.emails.send({
+        //     to: email,
+        //     subject: 'Welcome to Bookhive ',
+        //     body: `
+            
+        //     📚📚
+        //     <h1>Congratulations your email has been verified</h1>
+        //   `
+        //   })
+        // return res.status(200).send({message:"Account has been verifed"});
       
-     } else {
+     }
+ 
+     
+     else {
        return  res.status(400).json({error:"Invalid OTP"})
      }
 

@@ -24,10 +24,16 @@ const loginController = async  (req, res) => {
        return res.status(400).send("User does not exist")
     }
 
+   
+
     const isPasswordMatch = await bcrypt.compare(req.body.password, isExisting.password);
  
 
     if(isPasswordMatch) {
+
+      if(isExisting.isVerified === false) {
+        return   res.status(500).json({message:"This email has not been verified"})
+       }
 
         const auth = jwt.sign(
         {
