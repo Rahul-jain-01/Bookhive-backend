@@ -1,36 +1,18 @@
 {
-  "name": "bookhive",
+  "name": "bookhive-backend",
   "version": "1.0.0",
-  "description": "backend for bookhive",
-  "main": "ts-node server.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server",
-    "start": "node server"
-  },
-  "author": "obiabo",
-  "license": "ISC",
+  "main": "index.js",
+  "repository": "git@github.com:Bookhive-Club/Bookhive-backend.git",
+  "author": "yhoungdev <yhoungdev@gmail.com>",
+  "license": "MIT",
   "dependencies": {
-    "@plunk/node": "^1.1.1",
-    "bcrypt": "^5.1.0",
-    "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
+    "@types/node": "^20.6.0",
     "express": "^4.18.2",
-    "express-validator": "^7.0.1",
-    "jsonwebtoken": "^9.0.0",
-    "moment": "^2.29.4",
-    "mongoose": "^7.2.1",
-    "nodemailer": "^6.9.3",
-    "nodemon": "^2.0.22",
+    "formik": "^2.4.4",
+    "prettier": "^3.0.3",
+    "prisma": "^5.3.0",
     "ts-node": "^10.9.1",
-    "validator": "^13.9.0",
+    "typescript": "^5.2.2",
     "yup": "^1.2.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20.3.3",
-    "prettier": "^2.8.8",
-    "tslib": "^2.6.0",
-    "typescript": "^5.1.6"
   }
 }
