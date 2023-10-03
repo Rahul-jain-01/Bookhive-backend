@@ -32,7 +32,6 @@ export const create_account = async (req: Request, res: Response) => {
     if (!add_user) {
       return res.status(403).json({ message: 'Failed to create user' });
     }
-
     return res
       .status(201)
       .json({ message: 'User has been created successfully' });

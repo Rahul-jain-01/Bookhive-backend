@@ -12,3 +12,9 @@ export const _login_validator = Yup.object().shape({
   email: Yup.string().email().required(),
   password: Yup.string().required(''),
 });
+
+export const _reset_password_validator = Yup.object().shape({
+  email: Yup.string().email().required(), 
+  new_password: Yup.string().required("New password is required"),
+  current_password: Yup.string().required("Current password is required")
+})
