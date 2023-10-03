@@ -15,7 +15,7 @@ model Users {
   firstName  String
   lastName   String
   gender     String
-  email      String
+  email      String   @unique
   password   String
   Posts      Posts[]
   isSupended Boolean? @default(false)
