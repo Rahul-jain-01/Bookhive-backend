@@ -10,27 +10,27 @@ export const login = async (req: Request, res: Response) => {
   const { email, password } = validate_body;
   try {
     const isExisted = await prisma.users.findUnique({
-        where: {
-          email: email,
-        },
+      where: {
+        email: email,
+      },
+    });
+
+    if (!isExisted) {
+      return res.status(StatusCode.NotFound).send({
+        error: 'Email dosnt exist',
       });
-    
-      if (!isExisted) {
-        return res.status(StatusCode.NotFound).send({
-          error: 'Email dosnt exist',
-        });
-      }
-      const compare_password = await bcrypt.compare(password, isExisted.password);
-    
-      if (!compare_password) {
-        return res.status(StatusCode.BadRequest).send({
-          error: 'Password is not correct',
-        });
-      }
-    
-      return res.status(StatusCode.OK).send({
-        message: 'Logged in successfully',
+    }
+    const compare_password = await bcrypt.compare(password, isExisted.password);
+
+    if (!compare_password) {
+      return res.status(StatusCode.BadRequest).send({
+        error: 'Password is not correct',
       });
+    }
+
+    return res.status(StatusCode.OK).send({
+      message: 'Logged in successfully',
+    });
   } catch (err) {
     //@ts-ignore
     const errMsg = err?.message;

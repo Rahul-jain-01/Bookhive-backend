@@ -1,5 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import { auth_router } from './routes/auth_router';
+import { post_router } from './routes/post';
+
 const env = require('dotenv');
 const cors = require('cors');
 
@@ -9,7 +11,7 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 
-const routes = [auth_router];
+const routes = [auth_router, post_router];
 
 routes.map((_) => {
   app.use('/api', _);

@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.post('/auth/create_account', create_account);
 router.post('/auth/login', login);
-router.post('/auth/reset_password', reset_password)
+router.post('/auth/reset_password', reset_password);
 
 export const auth_router = router;
