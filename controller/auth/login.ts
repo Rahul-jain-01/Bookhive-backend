@@ -2,7 +2,9 @@ import { Request, Response } from 'express';
 import { _login_validator } from '../../validations/auth_validator';
 import { PrismaClient } from '@prisma/client';
 import { StatusCode } from '../../enums/status_code';
+import { signJwt } from '../../utils/signJwt';
 const bcrypt = require('bcrypt');
+
 
 const prisma = new PrismaClient();
 export const login = async (req: Request, res: Response) => {
@@ -28,8 +30,13 @@ export const login = async (req: Request, res: Response) => {
       });
     }
 
+
+    const jwtData = signJwt({
+      data: 'hello world'
+    } )
     return res.status(StatusCode.OK).send({
       message: 'Logged in successfully',
+      token: jwtData
     });
   } catch (err) {
     //@ts-ignore
