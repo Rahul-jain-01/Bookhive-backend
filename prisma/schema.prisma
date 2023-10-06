@@ -17,6 +17,7 @@ model Users {
   gender     String
   email      String   @unique
   password   String
+  otp        String?  
   Posts      Posts[]
   isSupended Boolean? @default(false)
   isDeleted  Boolean? @default(false)
